@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TOP SECRET...</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Hi Melody', Arial, sans-serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: magenta;
+        }
+        .container {
+            background-color: navy;
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            box-sizing: border-box;
+        }
+        .hidden-text {
+            margin-top: 60px;
+            display: none;
+            font-size: 1.2em;
+            color: white;
+        }
+        iframe {
+            width: 100%;
+            height: auto;
+            max-height: 315px;
+            border: none;
+        }
+        button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            background-color: white;
+            color: navy;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Enter Password</h1>
+        <p>hint: 내 별명 >.< </p>
+
+        <input type="password" id="passwordInput" placeholder="패스워드를 입력하세요" />
+        <button onclick="checkPassword()">Enter</button>
+
+        <div id="textOutput" class="hidden-text">
+            <iframe src="https://www.youtube.com/embed/YTH8cxXBGBo?si=TFux3NfhFbnwQtwt" 
+                    title="YouTube video player" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <p id="secretText"></p>
+        </div>
+    </div>
+
+    <script>
+        function checkPassword() {
+            const password = document.getElementById('passwordInput').value;
+            const output = document.getElementById('textOutput');
+            const secretText = document.getElementById('secretText');
+
+            if (password === 'NANA') {
+                output.style.display = 'block';
+                displayText("안녕? 이 편지는 내가 넷 곳곳에 숨겨 놨는데, 발견했다니 행운이네. \n 있잖아, 너... 아라사카에 대해서 의심을 가져 본 적 있어? 물론 나이트 시티에 사는 사람들 대부분이 그렇게 좋아하지 않는다는 건 알고 있지만, 그래도 우리 도시를 책임지고 있는 메가코프잖아. 흠... 글쎄! 생각하기 나름이겠지. \n 위에 넣어 놓은 노래 들어 봤어? 정말 예전에 나온 노래인데, 듣기 좋거든. 한번 시도해 봐! 이상한 브레인 댄스로 뇌 녹이기만 하지 말고 말이야. \n 아무튼... 사실 이건 그냥 텍스트가 아니고, 내가 직접 네 네트워크에 접속해 쓰고 있는 거야. 그리고 곳곳에 뿌려 놓은 것도 사실 거짓말이야! 너, 내 서류 읽었지? 재미있었어? 삭제가 안 되더라고, 미친 아카데미... 그래서 장난 좀 쳐 놨지. 어떻게 접속했는지는 모르겠지만, 아, 네 얼굴 보인다. 음... 같은 반 학생이네? 이름이 뭐더라? 내일 학교 가면 알 수 있겠네! 내일 보자. 노래 꼭 듣고! 후기 물어볼 거야... \n 그럼 이만!", secretText);
+            } else {
+                alert('패스워드가 올바르지 않습니다. 다시 시도해주세요.');
+                output.style.display = 'none';
+                secretText.textContent = "";
+            }
+        }
+
+        function displayText(text, element) {
+            element.textContent = "";
+            let i = 0;
+            const interval = setInterval(() => {
+                if (i < text.length) {
+                    element.textContent += text[i];
+                    i++;
+                } else {
+                    clearInterval(interval);
+                }
+            }, 70); // 0.2초 간격
+        }
+    </script>
+</body>
+</html>
