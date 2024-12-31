@@ -4,21 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TOP SECRET...</title>
+    <!-- 폰트 불러오기 (Poor Story만 사용) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hi+Melody&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+
     <style>
+        /* 배경 이미지와 폰트 적용 */
         body {
-            font-family: 'Hi Melody', Arial, sans-serif;
+            font-family: 'Poor Story', Arial, sans-serif;
             margin: 0;
             display: flex;
             justify-content: center;
             align-items: center;
             height: 100vh;
-            background-color: magenta;
+            background: url('background.jpg') no-repeat center center/cover; /* 배경 이미지 */
         }
         .container {
-            background-color: navy;
+            background-color: rgba(0, 0, 0, 0.6); /* 배경색 반투명 */
             color: white;
             padding: 20px;
             border-radius: 10px;
