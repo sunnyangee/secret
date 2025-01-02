@@ -56,12 +56,55 @@
         button:hover {
             background-color: lightgray;
         }
+
+        /* 글리치 효과 */
+        @keyframes glitch {
+            0% {
+                transform: translate(0);
+                clip-path: inset(0 0 0 0);
+            }
+            20% {
+                transform: translate(-10px, 0);
+                clip-path: inset(0 0 0 50%);
+            }
+            40% {
+                transform: translate(10px, 0);
+                clip-path: inset(0 50% 0 0);
+            }
+            60% {
+                transform: translate(-15px, 0);
+                clip-path: inset(0 0 0 75%);
+            }
+            80% {
+                transform: translate(15px, 0);
+                clip-path: inset(0 75% 0 0);
+            }
+            100% {
+                transform: translate(0);
+                clip-path: inset(0 0 0 0);
+            }
+        }
+
+        /* 글리치 효과 클래스 */
+        .glitch {
+            animation: glitch 0.2s infinite linear;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+        }
+
+        /* 문단 사이 여백 추가 */
+        #secretText p {
+            margin-bottom: 20px; /* 각 문단에 20px 여백 추가 */
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Enter Password</h1>
-        <p>hint: 내 별명 >.< </p>
+        <p>hint: 내 코드 네임! </p>
 
         <input type="password" id="passwordInput" placeholder="패스워드를 입력하세요" />
         <button onclick="checkPassword()">Enter</button>
@@ -76,14 +119,30 @@
     </div>
 
     <script>
+        const paragraphs = [
+            "안녕? 네가 방금까지 보고 있던 건 내 소유 문서가 아니라 여기에서 따로 말 좀 붙여 보려고. 별 다른 이유는 없고 (물론 네가 그걸 왜 보고 있던 건지는 궁금하지만…) 학교 친구 좀 사귀어 보고 싶어서! ٩( 'ω' )و 요즘 좀 무료하거든. 너도 그렇지? 학교도 조용해서 재미없어. 사이버 사이코나 나타나서 난리 떨었으면 좋겠다. 그럼 좀 재미있지 않을까? 그 사이코가 너희 중에 한 사람이 될 수도 있고... (๑╹ω╹๑ )",
+            "각설하고, 네 접속 기록은 내가 대신 지워 줬으니까 감사하게 생각하도록 해. 걸리면 바로 징계야. 어쩌면 퇴학일 수도 있겠네… 다들 아카데미 다니려고 많이 노력했잖아. 그치? 내가 봐주는 거야. ♡",
+            "흠…",
+            "사실 이거, 미리 입력해 놓은 게 아니고 실시간으로 쓰고 있는 거야. (비밀이지만) 해킹 덕분에 네 얼굴도 보여! (치즈 해 봐, 웃어 보라고!) 그러니까, 내일 학교에서 만나면 내가 먼저 인사할 거야. 대화 주제도 미리 정해 줄게. 첨부한 노래 보이지? 엄청 예전 노래인데… 듣고 감상문 발표할 준비라도 하고 와. 모르는 눈치면 조금 서운하겠다… ʅ（◞‿◟）ʃ 이 사이트 접속 기록도 없애 줄 테니까 걱정 말고!",
+            "내일 보자.",
+            "빠이이이!",
+            "사이트와의 연결이 끊어졌습니다.",
+            "자동으로 시스템이 재부팅됩니다.",
+            ".",
+            ".",
+            "."
+        ];
+
+        let currentParagraph = 0;
+
         function checkPassword() {
             const password = document.getElementById('passwordInput').value;
             const output = document.getElementById('textOutput');
             const secretText = document.getElementById('secretText');
 
-            if (password === 'NANA') {
+            if (password === 'IsNA') {
                 output.style.display = 'block';
-                displayText("안녕? 이 편지는 내가 넷 곳곳에 숨겨 놨는데, 발견했다니 행운이네. \n 있잖아, 너... 아라사카에 대해서 의심을 가져 본 적 있어? 물론 나이트 시티에 사는 사람들 대부분이 그렇게 좋아하지 않는다는 건 알고 있지만, 그래도 우리 도시를 책임지고 있는 메가코프잖아. 흠... 글쎄! 생각하기 나름이겠지. \n 위에 넣어 놓은 노래 들어 봤어? 정말 예전에 나온 노래인데, 듣기 좋거든. 한번 시도해 봐! 이상한 브레인 댄스로 뇌 녹이기만 하지 말고 말이야. \n 아무튼... 사실 이건 그냥 텍스트가 아니고, 내가 직접 네 네트워크에 접속해 쓰고 있는 거야. 그리고 곳곳에 뿌려 놓은 것도 사실 거짓말이야! 너, 내 서류 읽었지? 재미있었어? 삭제가 안 되더라고, 미친 아카데미... 그래서 장난 좀 쳐 놨지. 어떻게 접속했는지는 모르겠지만, 아, 네 얼굴 보인다. 음... 같은 반 학생이네? 이름이 뭐더라? 내일 학교 가면 알 수 있겠네! 내일 보자. 노래 꼭 듣고! 후기 물어볼 거야... \n 그럼 이만!", secretText);
+                displayText(paragraphs[currentParagraph], secretText);
             } else {
                 alert('패스워드가 올바르지 않습니다. 다시 시도해주세요.');
                 output.style.display = 'none';
@@ -92,16 +151,34 @@
         }
 
         function displayText(text, element) {
-            element.textContent = "";
+            const paragraph = document.createElement('p');  // 새로운 p 태그 생성
+            element.appendChild(paragraph);  // 기존 문단 뒤에 추가
+            paragraph.textContent = "";  // 초기 텍스트 비우기
+
             let i = 0;
             const interval = setInterval(() => {
                 if (i < text.length) {
-                    element.textContent += text[i];
+                    paragraph.textContent += text[i];
                     i++;
                 } else {
                     clearInterval(interval);
+                    currentParagraph++;
+
+                    // 마지막 문단이 끝나면 페이지를 새로 고침
+                    if (currentParagraph < paragraphs.length) {
+                        setTimeout(() => {
+                            displayText(paragraphs[currentParagraph], element);
+                        }, 1000); // 1초 후에 다음 문단 출력
+                    } else {
+                        // 글리치 효과 적용
+                        document.body.classList.add('glitch');
+
+                        setTimeout(() => {
+                            location.reload(); // 2초 후에 페이지 새로고침
+                        }, 2000);
+                    }
                 }
-            }, 70); // 0.2초 간격
+            }, 70); // 0.07초 간격
         }
     </script>
 </body>
