@@ -19,6 +19,7 @@
             align-items: center;
             height: 100vh;
             background: url('background.jpg') no-repeat center center/cover; /* 배경 이미지 */
+            background-attachment: fixed; /* 배경 이미지 고정 */
         }
         .container {
             background-color: rgba(0, 0, 0, 0.6); /* 배경색 반투명 */
@@ -104,7 +105,7 @@
 <body>
     <div class="container">
         <h1>Enter Password</h1>
-        <p>hint: 내 코드 네임! </p>
+        <p>hint: 내 코드 네임! </p>
 
         <input type="password" id="passwordInput" placeholder="패스워드를 입력하세요" />
         <button onclick="checkPassword()">Enter</button>
@@ -140,7 +141,7 @@
             const output = document.getElementById('textOutput');
             const secretText = document.getElementById('secretText');
 
-            if (password === 'IsNA') {
+            if (password === 'isNA') {
                 output.style.display = 'block';
                 displayText(paragraphs[currentParagraph], secretText);
             } else {
